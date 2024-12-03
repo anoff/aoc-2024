@@ -2,7 +2,9 @@
 
 ## Time spent [min]
 
-- Setup: 10
+This year I was curious how much time I'm spending on each challenge, so keeping some record here.
+
+- Setup: 20
 - Day01: 15
 - Day02:
 - Day03:
