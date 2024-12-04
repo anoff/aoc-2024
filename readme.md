@@ -8,5 +8,4 @@ This year I was curious how much time I'm spending on each challenge, so keeping
 - Day01: 15
 - Day02: 50 + 
 - Day03: 50
-    p1: 40
-    p2: 10
+- Day04: 

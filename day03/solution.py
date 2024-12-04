@@ -1,3 +1,7 @@
+# Effort
+# Part1: 40min
+#   mostly finding and fixing a nasty bug where my code ignored additional "," characters before closing brackets due to splitting
+# Part2: 10min
 import re
 
 
