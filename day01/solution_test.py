@@ -1,4 +1,4 @@
-from solution import get_diff, get_similarity
+from day01.solution import get_diff, get_similarity
 
 testinput = """
 3   4
