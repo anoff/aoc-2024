@@ -8,8 +8,17 @@ def star1(prg: str) -> int:
     return sum(vals)
 
 
-def star2():
-    input = read_input("input.txt")
+def star2(prg: str) -> int:
+    """Return sum of all valid multiplications.
+
+    Ignoring statements if they have a don't() in front."""
+    val = 0
+    dos = prg.split("do()")
+    for d in dos:
+        [p, *dont] = d.split("don't()")
+        muls = parse_muls(p)
+        val += sum([exec_mul(m) for m in muls])
+    return val
 
 
 def is_valid_number(t: str) -> bool:
@@ -37,7 +46,7 @@ def parse_muls(prg: str) -> list[str]:
 def exec_mul(mul: str) -> int:
     """Execute a single multiplication command."""
     [v1, v2] = mul[4:-1].split(",")
-    print(f"{v1}:{v2}")
+    # print(f"{v1}:{v2}")
     return int(v1) * int(v2)
 
 
@@ -57,7 +66,7 @@ def star1_regex(prg: str) -> int:
     for m in matches:
         (v1, v2) = m
         sum += int(v1) * int(v2)
-        print(f"{v1}:{v2}")
+        # print(f"{v1}:{v2}")
     return sum
 
 
@@ -65,5 +74,5 @@ if __name__ == "__main__":
     input = read_input("input.txt")
     v = star1(input)
     print(f"⭐️Star 1: {v}")
-    print("🌟Star 2:")
-    # star2()
+    v = star2(input)
+    print(f"⭐️Star 2: {v}")
