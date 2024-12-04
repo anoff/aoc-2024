@@ -1,8 +1,9 @@
+import re
+
+
 def star1(prg: str) -> int:
     """Return sum of all valid multiplications."""
     muls = parse_muls(prg)
-    print(len(muls))
-    print(muls)
     vals = [exec_mul(m) for m in muls]
     return sum(vals)
 
@@ -26,7 +27,7 @@ def parse_muls(prg: str) -> list[str]:
         [v1, *rest] = p.split(",")
         if is_valid_number(v1):
             m += v1 + ","
-            [v2, *rest] = rest[0].split(")")
+            [v2, *rest] = ",".join(rest).split(")")
             if is_valid_number(v2):
                 m += v2 + ")"
                 muls.append(m)
@@ -36,6 +37,7 @@ def parse_muls(prg: str) -> list[str]:
 def exec_mul(mul: str) -> int:
     """Execute a single multiplication command."""
     [v1, v2] = mul[4:-1].split(",")
+    print(f"{v1}:{v2}")
     return int(v1) * int(v2)
 
 
@@ -43,15 +45,25 @@ def read_input(filepath: str) -> str:
     """Read input and parse it."""
     cmd = ""
     with open(filepath, "r") as f:
-        for line in f.readlines():
+        for line in f.read():
             cmd += line
     return cmd
+
+
+def star1_regex(prg: str) -> int:
+    r = re.compile(r"mul\((\d+),(\d+)\)")
+    matches = re.findall(r, prg)
+    sum = 0
+    for m in matches:
+        (v1, v2) = m
+        sum += int(v1) * int(v2)
+        print(f"{v1}:{v2}")
+    return sum
 
 
 if __name__ == "__main__":
     input = read_input("input.txt")
     v = star1(input)
     print(f"⭐️Star 1: {v}")
-    # 160683556 too high
     print("🌟Star 2:")
     # star2()
